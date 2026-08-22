@@ -201,7 +201,7 @@ function disegnaWaterfall(r) {
     { label: 'IRPEF netta', delta: -r.irpefNetta, tipo: 'trattenuta' },
     { label: 'Add. regionale', delta: -r.addRegionale, tipo: 'trattenuta' },
     { label: 'Add. comunale', delta: -r.addComunale, tipo: 'trattenuta' },
-    { label: 'Bonus fiscale', delta: r.trattamentoIntegrativo, tipo: 'bonus' },
+    { label: 'Tratt. integr.', delta: r.trattamentoIntegrativo, tipo: 'bonus' },
     { label: 'NETTO', delta: r.nettoAnnuale, tipo: 'finale' },
   ];
 
