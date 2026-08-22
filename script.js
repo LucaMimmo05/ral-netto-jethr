@@ -54,7 +54,21 @@ function calcolaINPS(ral) {
   return baseOrdinaria * INPS_RATE + baseExtra * INPS_RATE_EXTRA;
 }
 
-/** Detrazione da lavoro dipendente (art. 13 TUIR), formula 2026. */
+/**
+ * Detrazione da lavoro dipendente (art. 13 TUIR), formula 2026.
+ *
+ * Limite noto: a rc = 15.000€ esatti il valore è 1.955€, ma la formula del
+ * ramo successivo vale già ~3.100€ a rc = 15.000,01€ — un salto di circa
+ * 1.145€ che non è continuo. Combinato con l'azzeramento del trattamento
+ * integrativo nello stesso punto (vedi calcolaCuneoFiscale), il netto
+ * annuale può risultare leggermente più basso per una RAL leggermente più
+ * alta in una fascia ristretta attorno a RAL ≈ 16.518€ (reddito imponibile
+ * ≈ 15.000€). Verificato: RAL 16.518€ → netto 14.520,5€, RAL 16.520€ →
+ * netto 14.466,7€. È un artefatto del combinare due formule prese da fonti
+ * diverse (ognuna corretta ai propri estremi, ma non cucite in modo
+ * continuo), non un errore di trascrizione — lasciato così deliberatamente
+ * invece di inventare un'interpolazione senza una fonte a supporto.
+ */
 function calcolaDetrazioneLavoroDipendente(redditoImponibile) {
   const rc = redditoImponibile;
   if (rc <= 0) return 0;
