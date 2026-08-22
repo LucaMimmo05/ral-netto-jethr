@@ -132,9 +132,8 @@ function calcolaNetto(ral) {
 // UI
 // ---------------------------------------------------------------------------
 
-const form = document.getElementById('calc-form');
 const ralInput = document.getElementById('ral-input');
-const risultati = document.getElementById('risultati');
+const ralSlider = document.getElementById('ral-slider');
 const mensilitaButtons = document.querySelectorAll('[data-mensilita]');
 
 let ultimoRisultato = null;
@@ -191,7 +190,6 @@ function render() {
   tbody.appendChild(trNetto);
 
   disegnaWaterfall(r);
-  risultati.hidden = false;
 }
 
 function disegnaWaterfall(r) {
@@ -208,7 +206,7 @@ function disegnaWaterfall(r) {
   const width = 720;
   const height = 300;
   const marginBottom = 34;
-  const marginTop = 14;
+  const marginTop = 30;
   const chartHeight = height - marginBottom - marginTop;
   const barGap = 14;
   const barWidth = (width - barGap * (passi.length - 1)) / passi.length;
@@ -252,12 +250,24 @@ function disegnaWaterfall(r) {
     `<svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">${svg}</svg>`;
 }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const ral = parseFloat(ralInput.value.replace(',', '.'));
+/** Ricalcola e ridisegna a partire dal valore corrente di RAL. Chiamata ad ogni interazione: nessun bottone "Calcola", il tool risponde in tempo reale come un vero software. */
+function aggiorna(ral) {
   if (!ral || ral <= 0) return;
   ultimoRisultato = calcolaNetto(ral);
   render();
+}
+
+ralInput.addEventListener('input', () => {
+  const ral = parseFloat(ralInput.value.replace(',', '.'));
+  if (!ral || ral <= 0) return;
+  const ralClamp = Math.min(ral, parseFloat(ralSlider.max));
+  ralSlider.value = ralClamp;
+  aggiorna(ral);
+});
+
+ralSlider.addEventListener('input', () => {
+  ralInput.value = ralSlider.value;
+  aggiorna(parseFloat(ralSlider.value));
 });
 
 mensilitaButtons.forEach((btn) => {
@@ -269,5 +279,5 @@ mensilitaButtons.forEach((btn) => {
   });
 });
 
-// Esempio precompilato per una prima esplorazione immediata
-ralInput.value = 32000;
+// Valore precompilato: calcolo iniziale immediato, nessuna azione richiesta.
+aggiorna(parseFloat(ralInput.value));

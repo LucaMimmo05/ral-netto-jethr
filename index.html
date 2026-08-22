@@ -7,71 +7,79 @@
 <meta name="description" content="Simulatore di proiezione della retribuzione netta annuale a partire dalla RAL, per un impiegato a tempo indeterminato residente a Milano.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="scrivania">
-  <main class="documento">
+  <div class="app">
 
-    <header class="testata">
+    <header class="app-header">
       <p class="eyebrow">Simulatore retribuzione · Milano · tempo indeterminato · 2026</p>
-      <h1>Da lordo a netto.</h1>
-      <p class="sottotitolo">Inserisci la RAL e scopri il netto annuale, il netto mensile e ogni singola voce trattenuta al lordo — con le aliquote applicate.</p>
+      <h1>Da lordo a netto</h1>
     </header>
 
-    <form id="calc-form" class="riga-input">
-      <label for="ral-input">RAL annua lorda</label>
-      <div class="campo-euro">
-        <span>€</span>
-        <input type="text" inputmode="decimal" id="ral-input" name="ral" placeholder="32000" autocomplete="off">
-      </div>
-      <button type="submit">Calcola →</button>
-    </form>
+    <div class="app-body">
 
-    <section id="risultati" hidden>
-
-      <div class="riepilogo">
-        <div class="stat stat-primaria">
-          <span class="stat-label">Netto annuale</span>
-          <span class="stat-valore" id="netto-annuale">—</span>
+      <aside class="pannello-input">
+        <div class="campo">
+          <label for="ral-input">RAL annua lorda</label>
+          <div class="campo-euro">
+            <span>€</span>
+            <input type="text" inputmode="decimal" id="ral-input" name="ral" autocomplete="off" value="32000">
+          </div>
+          <input type="range" id="ral-slider" min="10000" max="120000" step="250" value="32000" aria-label="RAL annua lorda">
+          <div class="slider-scala"><span>10k</span><span>120k</span></div>
         </div>
-        <div class="stat">
-          <span class="stat-label">Netto mensile</span>
-          <span class="stat-valore" id="netto-mensile">—</span>
+
+        <div class="campo">
+          <span class="campo-label">Mensilità</span>
           <div class="toggle-mensilita">
             <button type="button" data-mensilita="12">12</button>
             <button type="button" data-mensilita="13" class="attivo">13</button>
             <button type="button" data-mensilita="14">14</button>
           </div>
         </div>
-        <div class="stat">
-          <span class="stat-label">Aliquota effettiva sul lordo</span>
-          <span class="stat-valore" id="aliquota-effettiva">—</span>
+
+        <div class="stat-live-gruppo">
+          <div class="stat stat-primaria">
+            <span class="stat-label">Netto annuale</span>
+            <span class="stat-valore" id="netto-annuale">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Netto mensile</span>
+            <span class="stat-valore" id="netto-mensile">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Aliquota effettiva sul lordo</span>
+            <span class="stat-valore stat-valore-piccola" id="aliquota-effettiva">—</span>
+          </div>
         </div>
-      </div>
+      </aside>
 
-      <div class="pannello">
-        <h2 class="titolo-sezione">La cascata: dove va la RAL</h2>
-        <div id="waterfall" class="waterfall"></div>
-      </div>
+      <main class="pannello-risultati">
+        <section class="pannello">
+          <h2 class="titolo-sezione">La cascata: dove va la RAL</h2>
+          <div id="waterfall" class="waterfall"></div>
+        </section>
 
-      <div class="pannello">
-        <h2 class="titolo-sezione">Cedolino annuale — dettaglio voci</h2>
-        <table class="cedolino">
-          <thead>
-            <tr>
-              <th class="col-voce">Voce</th>
-              <th class="col-nota">Aliquota / condizione</th>
-              <th class="col-valore">Importo</th>
-            </tr>
-          </thead>
-          <tbody id="cedolino-body"></tbody>
-        </table>
-      </div>
+        <section class="pannello">
+          <h2 class="titolo-sezione">Cedolino annuale — dettaglio voci</h2>
+          <table class="cedolino">
+            <thead>
+              <tr>
+                <th class="col-voce">Voce</th>
+                <th class="col-nota">Aliquota / condizione</th>
+                <th class="col-valore">Importo</th>
+              </tr>
+            </thead>
+            <tbody id="cedolino-body"></tbody>
+          </table>
+        </section>
+      </main>
 
-    </section>
+    </div>
 
     <details class="note-metodologiche">
       <summary>Note metodologiche e fonti normative (2026)</summary>
@@ -99,7 +107,7 @@
       </div>
     </details>
 
-  </main>
+  </div>
 </div>
 
 <script src="script.js"></script>
