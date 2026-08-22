@@ -66,24 +66,26 @@ function calcolaDetrazioneLavoroDipendente(redditoImponibile) {
 
 /**
  * Cuneo fiscale 2026, in due componenti giuridicamente distinte:
- * - "trattamentoIntegrativo": credito d'imposta, spetta anche se l'IRPEF
- *   netta è già azzerata dalle detrazioni (per redditi fino a 20.000,
- *   qui semplificato assumendo sempre capienza per la fascia 15-20k).
- * - "ulterioreDetrazione": vera detrazione d'imposta, riduce l'IRPEF lorda
- *   insieme alla detrazione da lavoro dipendente e NON può portarla sotto zero.
+ * - "trattamentoIntegrativo": credito d'imposta, pieno e incondizionato solo
+ *   fino a 15.000€ di reddito imponibile. Tra 15.000 e 28.000€ la norma reale
+ *   prevede una riduzione legata alla "capienza fiscale" (le detrazioni
+ *   spettanti devono superare l'IRPEF lorda); le fonti secondarie disponibili
+ *   non concordano sulla formula esatta di quella fascia, quindi qui viene
+ *   semplificata a zero — scelta conservativa e dichiarata, non una stima
+ *   della formula reale.
+ * - "ulterioreDetrazione": vera detrazione d'imposta (non credito), riduce
+ *   l'IRPEF lorda insieme alla detrazione da lavoro dipendente e NON può
+ *   portarla sotto zero.
  */
 function calcolaCuneoFiscale(redditoImponibile) {
   const rc = redditoImponibile;
-  if (rc <= 20000) {
-    return { trattamentoIntegrativo: 1200, ulterioreDetrazione: 0 };
-  }
-  if (rc <= 32000) {
-    return { trattamentoIntegrativo: 0, ulterioreDetrazione: 1000 };
-  }
-  if (rc < 40000) {
-    return { trattamentoIntegrativo: 0, ulterioreDetrazione: 1000 * (40000 - rc) / 8000 };
-  }
-  return { trattamentoIntegrativo: 0, ulterioreDetrazione: 0 };
+  const trattamentoIntegrativo = rc <= 15000 ? 1200 : 0;
+
+  let ulterioreDetrazione = 0;
+  if (rc > 20000 && rc <= 32000) ulterioreDetrazione = 1000;
+  else if (rc > 32000 && rc < 40000) ulterioreDetrazione = 1000 * (40000 - rc) / 8000;
+
+  return { trattamentoIntegrativo, ulterioreDetrazione };
 }
 
 function calcolaAddizionaleRegionale(redditoImponibile) {
@@ -164,7 +166,7 @@ function render() {
     ['Ulteriore detrazione (cuneo fiscale)', r.ulterioreDetrazione, '+', r.ulterioreDetrazione > 0 ? '20.000–40.000 €' : 'non spettante'],
     ['Addizionale regionale Lombardia', -r.addRegionale, '−', '1,23%–1,73% a scaglioni'],
     ['Addizionale comunale Milano', -r.addComunale, '−', r.addComunale > 0 ? '0,80%' : 'esente (reddito ≤ 23.000)'],
-    ['Trattamento integrativo', r.trattamentoIntegrativo, '+', r.trattamentoIntegrativo > 0 ? 'credito, reddito ≤ 20.000' : 'non spettante'],
+    ['Trattamento integrativo', r.trattamentoIntegrativo, '+', r.trattamentoIntegrativo > 0 ? 'credito, reddito ≤ 15.000' : 'non spettante'],
   ];
 
   const tbody = document.getElementById('cedolino-body');

@@ -331,6 +331,14 @@ tr.riga-netto td {
 
 .note-contenuto { padding-top: 16px; color: var(--inchiostro-tenue); line-height: 1.6; }
 
+.note-contenuto a {
+  color: var(--smeraldo-scuro);
+  text-decoration-color: var(--carta-riga);
+  text-underline-offset: 2px;
+}
+
+.note-contenuto a:hover { text-decoration-color: currentColor; }
+
 .note-contenuto h3 {
   font-family: var(--font-sans);
   font-size: 13px;

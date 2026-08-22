@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -91,26 +91,27 @@
           <li>Residenza fiscale a Milano (MI) per l'intero anno; nessun altro Comune coinvolto.</li>
           <li>Nessun altro reddito, onere deducibile/detraibile, familiare a carico, o agevolazione (es. bonus giovani under 30, impatriati, legge 104).</li>
           <li>RAL intesa come importo annuo lordo comprensivo di tutte le mensilità pattuite; il numero di mensilità (12/13/14) incide solo sulla ripartizione mensile del netto, non sui totali annui di imposte e contributi.</li>
-          <li>Trattamento integrativo (redditi fino a 20.000 €) calcolato come importo pieno di 1.200 €/anno, assumendo sempre capienza fiscale nella fascia 15.000–20.000 € (in realtà condizionata: spetta solo se le detrazioni superano l'IRPEF lorda).</li>
+          <li>Trattamento integrativo: 1.200 €/anno pieni solo fino a 15.000 € di reddito imponibile. Tra 15.000 e 28.000 € la norma reale prevede una riduzione legata alla "capienza fiscale" (detrazioni spettanti superiori all'IRPEF lorda); le fonti consultate non concordano sulla formula esatta di quella fascia, quindi qui è semplificata a zero — sottostima leggermente il netto invece di sovrastimarlo.</li>
           <li>Non sono modellati: TFR, welfare aziendale, straordinari, superminimi, arretrati, conguaglio di fine anno, addizionali comunali di comuni diversi da Milano.</li>
           <li>Le addizionali regionale e comunale sono qui trattate come costo dell'anno corrente; nella realtà vengono trattenute l'anno successivo, in busta paga, a seguito del conguaglio.</li>
         </ul>
-        <h3>Fonti</h3>
+        <h3>Fonti (verificate a mano, con citazione testuale)</h3>
         <ul>
-          <li>Aliquote IRPEF 2026 (23% / 33% / 43%) — riforma fiscale, Legge di Bilancio.</li>
-          <li>Aliquota contributiva INPS lavoratore (9,19%, +1% oltre il primo massimale pensionabile) — circolari INPS.</li>
-          <li>Formula detrazione da lavoro dipendente — art. 13 TUIR (D.P.R. 917/1986), come modificato dalla riforma 2026.</li>
-          <li>Trattamento integrativo e ulteriore detrazione (cuneo fiscale) — normativa sul taglio del cuneo fiscale, proroga 2026.</li>
-          <li>Addizionale regionale Lombardia — art. 72, L.R. 10/2003.</li>
-          <li>Addizionale comunale Milano (0,80%, esenzione fino a 23.000 €) — delibera comunale aliquote 2026.</li>
+          <li>Aliquote IRPEF 2026 (23% / 33% / 43%) — <a href="https://www.edenred.it/blog/guida-welfare-aziendale/riforma-irpef-nuove-aliquote/" target="_blank" rel="noopener">Edenred, "Riforma IRPEF 2026"</a>.</li>
+          <li>Aliquota contributiva INPS lavoratore (9,19%, +1% oltre 56.224 €) — <a href="https://stipendionettocalcolatore.it/contributi-inps/" target="_blank" rel="noopener">stipendionettocalcolatore.it, "Contributi INPS 2026"</a>.</li>
+          <li>Formula detrazione da lavoro dipendente (art. 13 TUIR) — <a href="https://centrofiscale.com/detrazioni-lavoro-dipendente-2026/" target="_blank" rel="noopener">Centro Fiscale, "Detrazioni lavoro dipendente 2026"</a>.</li>
+          <li>Trattamento integrativo (1.200€ fino a 15.000€, azzerato oltre) — <a href="https://www.stipendee.it/pills/trattamento-integrativo" target="_blank" rel="noopener">stipendee.it</a> e <a href="https://centrofiscale.com/trattamento-integrativo-2026-chi-spetta-calcolo-730/" target="_blank" rel="noopener">Centro Fiscale</a>.</li>
+          <li>Ulteriore detrazione cuneo fiscale (1.000€, 20.000–40.000€) — fonte solo parzialmente verificabile in modo diretto (pagina originale non accessibile per un secondo controllo); numeri incrociati su più portali fiscali indipendenti nella ricerca iniziale.</li>
+          <li>Addizionale regionale Lombardia (1,23%–1,73% a scaglioni) — <a href="https://www.regione.lombardia.it/bollo-auto-e-tributi-regionali/red-addizionale-regionale-irpef" target="_blank" rel="noopener">Regione Lombardia, pagina ufficiale</a>.</li>
+          <li>Addizionale comunale Milano (0,80%, esenzione fino a 23.000 €) — <a href="https://www.tuttocalcolo.it/addizionale-irpef/lombardia/milano" target="_blank" rel="noopener">TuttoCalcolo.it</a>, che cita la delibera comunale n. 46 del 28/09/2020 (in vigore anche nel 2026).</li>
         </ul>
-        <p class="nota-finale">Prototipo a scopo dimostrativo. Non costituisce consulenza fiscale o del lavoro.</p>
+        <p class="nota-finale">Prototipo a scopo dimostrativo, costruito con ricerca guidata e verifica incrociata delle fonti. Non costituisce consulenza fiscale o del lavoro — in punti dove le fonti secondarie disponibili non concordavano, è stata fatta una scelta esplicita e conservativa, dichiarata sopra.</p>
       </div>
     </details>
 
   </div>
 </div>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
