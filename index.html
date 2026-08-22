@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Da lordo a netto — simulatore RAL 2026</title>
+<meta name="description" content="Simulatore di proiezione della retribuzione netta annuale a partire dalla RAL, per un impiegato a tempo indeterminato residente a Milano.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scrivania">
+  <main class="documento">
+
+    <header class="testata">
+      <p class="eyebrow">Simulatore retribuzione · Milano · tempo indeterminato · 2026</p>
+      <h1>Da lordo a netto.</h1>
+      <p class="sottotitolo">Inserisci la RAL e scopri il netto annuale, il netto mensile e ogni singola voce trattenuta al lordo — con le aliquote applicate.</p>
+    </header>
+
+    <form id="calc-form" class="riga-input">
+      <label for="ral-input">RAL annua lorda</label>
+      <div class="campo-euro">
+        <span>€</span>
+        <input type="text" inputmode="decimal" id="ral-input" name="ral" placeholder="32000" autocomplete="off">
+      </div>
+      <button type="submit">Calcola →</button>
+    </form>
+
+    <section id="risultati" hidden>
+
+      <div class="riepilogo">
+        <div class="stat stat-primaria">
+          <span class="stat-label">Netto annuale</span>
+          <span class="stat-valore" id="netto-annuale">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Netto mensile</span>
+          <span class="stat-valore" id="netto-mensile">—</span>
+          <div class="toggle-mensilita">
+            <button type="button" data-mensilita="12">12</button>
+            <button type="button" data-mensilita="13" class="attivo">13</button>
+            <button type="button" data-mensilita="14">14</button>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Aliquota effettiva sul lordo</span>
+          <span class="stat-valore" id="aliquota-effettiva">—</span>
+        </div>
+      </div>
+
+      <div class="pannello">
+        <h2 class="titolo-sezione">La cascata: dove va la RAL</h2>
+        <div id="waterfall" class="waterfall"></div>
+      </div>
+
+      <div class="pannello">
+        <h2 class="titolo-sezione">Cedolino annuale — dettaglio voci</h2>
+        <table class="cedolino">
+          <thead>
+            <tr>
+              <th class="col-voce">Voce</th>
+              <th class="col-nota">Aliquota / condizione</th>
+              <th class="col-valore">Importo</th>
+            </tr>
+          </thead>
+          <tbody id="cedolino-body"></tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <details class="note-metodologiche">
+      <summary>Note metodologiche e fonti normative (2026)</summary>
+      <div class="note-contenuto">
+        <h3>Ipotesi semplificative</h3>
+        <ul>
+          <li>Impiegato del settore privato, contratto a tempo indeterminato, 365 giorni di lavoro nell'anno, nessuna assenza non retribuita.</li>
+          <li>Residenza fiscale a Milano (MI) per l'intero anno; nessun altro Comune coinvolto.</li>
+          <li>Nessun altro reddito, onere deducibile/detraibile, familiare a carico, o agevolazione (es. bonus giovani under 30, impatriati, legge 104).</li>
+          <li>RAL intesa come importo annuo lordo comprensivo di tutte le mensilità pattuite; il numero di mensilità (12/13/14) incide solo sulla ripartizione mensile del netto, non sui totali annui di imposte e contributi.</li>
+          <li>Trattamento integrativo (redditi fino a 20.000 €) calcolato come importo pieno di 1.200 €/anno, assumendo sempre capienza fiscale nella fascia 15.000–20.000 € (in realtà condizionata: spetta solo se le detrazioni superano l'IRPEF lorda).</li>
+          <li>Non sono modellati: TFR, welfare aziendale, straordinari, superminimi, arretrati, conguaglio di fine anno, addizionali comunali di comuni diversi da Milano.</li>
+          <li>Le addizionali regionale e comunale sono qui trattate come costo dell'anno corrente; nella realtà vengono trattenute l'anno successivo, in busta paga, a seguito del conguaglio.</li>
+        </ul>
+        <h3>Fonti</h3>
+        <ul>
+          <li>Aliquote IRPEF 2026 (23% / 33% / 43%) — riforma fiscale, Legge di Bilancio.</li>
+          <li>Aliquota contributiva INPS lavoratore (9,19%, +1% oltre il primo massimale pensionabile) — circolari INPS.</li>
+          <li>Formula detrazione da lavoro dipendente — art. 13 TUIR (D.P.R. 917/1986), come modificato dalla riforma 2026.</li>
+          <li>Trattamento integrativo e ulteriore detrazione (cuneo fiscale) — normativa sul taglio del cuneo fiscale, proroga 2026.</li>
+          <li>Addizionale regionale Lombardia — art. 72, L.R. 10/2003.</li>
+          <li>Addizionale comunale Milano (0,80%, esenzione fino a 23.000 €) — delibera comunale aliquote 2026.</li>
+        </ul>
+        <p class="nota-finale">Prototipo a scopo dimostrativo. Non costituisce consulenza fiscale o del lavoro.</p>
+      </div>
+    </details>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
