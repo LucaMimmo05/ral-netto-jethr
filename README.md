@@ -2,7 +2,7 @@
 
 Prototipo per la prova tecnica **Product Builder @ JET HR**.
 
-Un calcolatore che, data una RAL (retribuzione annua lorda), proietta il netto annuale e mensile percepito da un dipendente, mostrando ogni singola voce trattenuta al lordo (contributi, imposte, addizionali) con le relative aliquote.
+Un calcolatore che, data una RAL (retribuzione annua lorda), proietta il netto annuale e mensile percepito da un dipendente, mostrando ogni singola voce trattenuta al lordo (contributi, imposte, addizionali) con le relative aliquote. Il calcolo è live — nessun bottone "Calcola": digiti o trascini lo slider e i risultati si aggiornano all'istante.
 
 **[→ Prova il calcolatore](https://lucamimmo05.github.io/ral-netto-jethr/)**
 
@@ -28,11 +28,11 @@ RAL
  + Ulteriore detrazione "cuneo fiscale" (redditi 20.000–40.000 €)
  − Addizionale regionale Lombardia (a scaglioni, 1,23%–1,73%)
  − Addizionale comunale Milano (0,80%, esente sotto 23.000 €)
- + Trattamento integrativo (credito d'imposta, redditi fino a 20.000 €)
+ + Trattamento integrativo (credito d'imposta, pieno solo sotto 15.000 €)
  = NETTO ANNUALE
 ```
 
-Il codice in [`script.js`](script.js) implementa ogni passaggio come funzione separata e commentata con il riferimento normativo, cos'è distinguibile e verificabile riga per riga — nessuna dipendenza esterna, nessun calcolo "a scatola chiusa".
+Il codice in [`script.js`](script.js) implementa ogni passaggio come funzione separata e commentata con il riferimento normativo, cos'è distinguibile e verificabile riga per riga — nessuna dipendenza esterna, nessun calcolo "a scatola chiusa". Tutte le aliquote e formule sono state verificate con citazione testuale diretta dalle fonti (vedi "Note metodologiche" nell'app); dove le fonti disponibili si contraddicevano (il trattamento integrativo tra 15.000 e 28.000 €), la scelta fatta e il perché sono documentati sia nel codice sia in app.
 
 ## Stack
 
