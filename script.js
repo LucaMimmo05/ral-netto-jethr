@@ -68,11 +68,24 @@ function calcolaDetrazioneLavoroDipendente(redditoImponibile) {
  * Cuneo fiscale 2026, in due componenti giuridicamente distinte:
  * - "trattamentoIntegrativo": credito d'imposta, pieno e incondizionato solo
  *   fino a 15.000€ di reddito imponibile. Tra 15.000 e 28.000€ la norma reale
- *   prevede una riduzione legata alla "capienza fiscale" (le detrazioni
- *   spettanti devono superare l'IRPEF lorda); le fonti secondarie disponibili
- *   non concordano sulla formula esatta di quella fascia, quindi qui viene
- *   semplificata a zero — scelta conservativa e dichiarata, non una stima
- *   della formula reale.
+ *   prevede una riduzione legata alla "capienza fiscale", ma le fonti
+ *   consultate si contraddicono sulla direzione della condizione:
+ *
+ *     stipendee.it (https://www.stipendee.it/pills/trattamento-integrativo):
+ *       "il bonus massimo di 1.200 euro annui... purché l'IRPEF lorda
+ *       superi la detrazione per lavoro dipendente"
+ *       → condizione: IRPEF lorda > detrazione
+ *
+ *     centrofiscale.com (https://centrofiscale.com/trattamento-integrativo-2026-chi-spetta-calcolo-730/):
+ *       "TI = MIN(1.200 euro; Somma detrazioni spettanti - Imposta lorda)"
+ *       → condizione opposta: detrazione > IRPEF lorda (altrimenti il
+ *         valore dentro MIN è negativo e il bonus si azzera)
+ *
+ *   Le due fonti descrivono condizioni letteralmente opposte. Non trovando
+ *   un terzo riscontro dirimente, invece di indovinare quale sia corretta
+ *   si è scelto di non implementare nessuna delle due formule per questa
+ *   fascia: il credito viene posto a zero tra 15.000 e 28.000€, scelta
+ *   conservativa e dichiarata, non una stima della regola reale.
  * - "ulterioreDetrazione": vera detrazione d'imposta (non credito), riduce
  *   l'IRPEF lorda insieme alla detrazione da lavoro dipendente e NON può
  *   portarla sotto zero.
