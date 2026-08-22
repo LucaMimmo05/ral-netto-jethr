@@ -4,7 +4,7 @@ Prototipo per la prova tecnica **Product Builder @ JET HR**.
 
 Un calcolatore che, data una RAL (retribuzione annua lorda), proietta il netto annuale e mensile percepito da un dipendente, mostrando ogni singola voce trattenuta al lordo (contributi, imposte, addizionali) con le relative aliquote.
 
-**[→ Prova il calcolatore](#)** *(link GitHub Pages dopo il deploy)*
+**[→ Prova il calcolatore](https://lucamimmo05.github.io/ral-netto-jethr/)**
 
 ## Scope e ipotesi
 
